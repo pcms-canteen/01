@@ -43,15 +43,52 @@
     <a href="https://pcms-canteen02.netlify.app/" class="button2">我吃飽了</a>
   </body>
   <footer>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./style.css">
- 
-<div id="DigitalCLOCK" class="clock" onload="showTime()"></div>
-  <script  src="function.js"></script>      
-     
+    
+<div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+
+    <style>
+.clock {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color: #17D4FE;
+    font-size: 60px;
+    font-family: Orbitron;
+    letter-spacing: 7px;
+   }
+</style>
+<script>
+    function showTime(){
+    var date = new Date();
+    var h = date.getHours(); // 0 - 23
+    var m = date.getMinutes(); // 0 - 59
+    var s = date.getSeconds(); // 0 - 59
+    var session = "AM";
+    
+    if(h == 0){
+        h = 12;
+    }
+    
+    if(h > 12){
+        h = h - 12;
+        session = "PM";
+    }
+    
+    h = (h < 10) ? "0" + h : h;
+    m = (m < 10) ? "0" + m : m;
+    s = (s < 10) ? "0" + s : s;
+    
+    var time = h + ":" + m + ":" + s + " " + session;
+    document.getElementById("MyClockDisplay").innerText = time;
+    document.getElementById("MyClockDisplay").textContent = time;
+    
+    setTimeout(showTime, 1000);
+    
+}
+
+showTime();
+</script>
   </footer>
 </html>
 <!DOCTYPE html>
